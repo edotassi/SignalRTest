@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SignalRTest.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,10 +28,7 @@ namespace SignalRTest
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode()
-            {
-                ContextCondition = Context => Context.Request.UserAgent.ToLower().IndexOf("android") > -1
-            });
+            DisplayModeProvider.Instance.Modes.Insert(0, new MobileDisplayMode());
         }
     }
 }

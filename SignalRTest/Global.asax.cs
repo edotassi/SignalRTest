@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.WebPages;
 
 namespace SignalRTest
 {
@@ -25,6 +26,11 @@ namespace SignalRTest
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode()
+            {
+                ContextCondition = Context => Context.Request.UserAgent.ToLower().IndexOf("android") > -1
+            });
         }
     }
 }
